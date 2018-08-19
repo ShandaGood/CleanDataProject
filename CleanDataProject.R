@@ -48,7 +48,7 @@ library(dplyr)
 #create a tidy data set using dplyr
 dtrainandtest <- tbl_df(trainandtest)
 #select only the columns with mean and std(standard deviation)
-meanstdtrainandtest <- dtrainandtest %>% select(matches("mean*|std*"), -matches("meanFreq*"),activity)
+meanstdtrainandtest <- dtrainandtest %>% select(matches("mean*|std*"), -matches("meanFreq*"),activity,subjects)
 #data set with average of each variable by activity 
-activityaverage <- meanstdtrainandtest %>% group_by(activity) %>% summarize_all(mean)
+activityaverage <- meanstdtrainandtest %>% group_by(subjects, activity) %>% summarize_all(mean)
 activityaverage <- data.frame(activityaverage)
